@@ -4,4 +4,11 @@
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
     <string name="new_monitoring">Novo monitoramento</string>
+    <string name="fail_solicitation">Falha na comunicação com o servidor</string>
+    <string name="notification_message">Clique e envie o seus comentários</string>
+    <string name="notification_title">Atendimento Finalizado</string>
+    <string name="coment_status">Inisira um comentario e avalie a situaçao atual de sua solicitaçao</string>
+    <string name="title_activity_evaluate_solicitation">Avaliação</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>

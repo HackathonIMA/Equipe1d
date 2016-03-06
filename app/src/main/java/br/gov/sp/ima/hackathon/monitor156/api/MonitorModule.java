@@ -18,10 +18,18 @@ public class MonitorModule {
     private static final String CLIENT_ID = "client_id";
     private static final String ACCEPT = "Accept";
 
-    public static MonitorApi getApi() {
+    public static MonitorApi getProdApi() {
+        return setupApi(BuildConfig.PROD_BASE_URL);
+    }
+
+    public static MonitorApi getHmlApi() {
+        return setupApi(BuildConfig.HML_BASE_URL);
+    }
+
+    private static MonitorApi setupApi(String baseUrl) {
         MonitorModule module = new MonitorModule();
         Gson gson = module.provideGson();
-        RestAdapter adapter = module.provideRestAdapter(gson);
+        RestAdapter adapter = module.provideRestAdapter(gson, baseUrl);
         return module.provideMonitor(adapter);
     }
 
@@ -29,9 +37,9 @@ public class MonitorModule {
         return new GsonBuilder().create();
     }
 
-    private RestAdapter provideRestAdapter(Gson gson) {
+    private RestAdapter provideRestAdapter(Gson gson, String baseUrl) {
         return new RestAdapter.Builder()
-                .setEndpoint(BuildConfig.BASE_URL)
+                .setEndpoint(baseUrl)
                 .setConverter(new GsonConverter(gson))
                 .setClient(new OkClient(provideOkHttpClient()))
                 .setRequestInterceptor(provideRequestInterceptor())

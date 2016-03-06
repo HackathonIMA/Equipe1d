@@ -2,19 +2,25 @@ package br.gov.sp.ima.hackathon.monitor156.values;
 
 public class Monitoring {
 
-    public String id;
-    public String content;
+    private String description;
+    private int status;
+    private String statusDescription;
 
-    public Monitoring(String id, String content) {
-        this.id = id;
-        this.content = content;
+    public Monitoring(String description, int status, String statusDescription) {
+        this.description = description;
+        this.status = status;
+        this.statusDescription = statusDescription;
     }
 
-    public String getId() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public String getContent() {
-        return content;
+    public int getStatus() {
+        return status;
+    }
+
+    public String getStatusDescription() {
+        return statusDescription;
     }
 }

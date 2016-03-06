@@ -37,8 +37,8 @@ public class InProgressMonitoringAdapter extends RecyclerView.Adapter<InProgress
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = monitoringList.get(position);
-        holder.mIdView.setText(monitoringList.get(position).id);
-        holder.mContentView.setText(monitoringList.get(position).content);
+        holder.mIdView.setText(monitoringList.get(position).getDescription());
+        holder.mContentView.setText(monitoringList.get(position).getStatusDescription());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

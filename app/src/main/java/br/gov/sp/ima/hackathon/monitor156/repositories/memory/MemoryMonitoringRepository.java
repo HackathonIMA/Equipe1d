@@ -9,18 +9,23 @@ import br.gov.sp.ima.hackathon.monitor156.values.Monitoring;
 public class MemoryMonitoringRepository implements MonitoringRepository {
 
     private static final List<Monitoring> FIXED_MONITORING_LIST = Arrays.asList(
-            new Monitoring("1", "Monitoring 1"),
-            new Monitoring("2", "Monitoring 2"),
-            new Monitoring("3", "Monitoring 3")
+            new Monitoring("Buraco na via", 2, "Finalizado"),
+            new Monitoring("Vazamento", 3, ""),
+            new Monitoring("Monitoring", 4, "")
     );
 
     @Override
-    public void registerMonitoring(MonitoringListener listener) {
+    public void registerMonitoring(String solicitationId, String cellNumber, final MonitoringListener listener) {
         // TODO:
     }
 
     @Override
     public List<Monitoring> fetchMonitoring() {
         return FIXED_MONITORING_LIST;
+    }
+
+    @Override
+    public void contestStatus(String solicitationId, String comment, MonitoringListener listener) {
+        // TODO:
     }
 }

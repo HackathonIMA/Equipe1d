@@ -11,7 +11,7 @@ public interface MonitoringRepository {
         void onRegisterMonitoringFail();
     }
 
-    void registerMonitoring(MonitoringListener listener);
-
+    void registerMonitoring(String solicitationId, String cellNumber, final MonitoringListener listener);
     List<Monitoring> fetchMonitoring();
+    void contestStatus(String solicitationId, String comment, MonitoringListener listener);
 }

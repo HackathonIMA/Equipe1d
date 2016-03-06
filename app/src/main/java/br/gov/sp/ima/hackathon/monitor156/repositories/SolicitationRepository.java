@@ -1,11 +1,11 @@
 package br.gov.sp.ima.hackathon.monitor156.repositories;
 
-import br.gov.sp.ima.hackathon.monitor156.api.SolicitationPayload;
+import br.gov.sp.ima.hackathon.monitor156.api.payload.SolicitationPayload;
 
 public interface SolicitationRepository {
 
     interface SolicitationListener {
-        void onFetchSolicitationSuccess(SolicitationPayload solicitationPayload);
+        void onFetchSolicitationSuccess(SolicitationPayload payload);
         void onFetchSolicitationFail();
     }
 

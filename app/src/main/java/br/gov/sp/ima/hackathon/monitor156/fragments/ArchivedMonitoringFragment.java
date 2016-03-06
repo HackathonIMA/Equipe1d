@@ -9,11 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import br.gov.sp.ima.hackathon.monitor156.R;
-import br.gov.sp.ima.hackathon.monitor156.adapters.ArchivedMonitoringAdapter;
-import br.gov.sp.ima.hackathon.monitor156.repositories.Repositories;
 import br.gov.sp.ima.hackathon.monitor156.values.Monitoring;
 
 /**
@@ -47,12 +43,12 @@ public class ArchivedMonitoringFragment extends Fragment {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            List<Monitoring> monitoringList = Repositories.repository().forMonitoring().fetchMonitoring();
-            recyclerView.setAdapter(new ArchivedMonitoringAdapter(monitoringList, listener));
+
+            // TODO: find by status archived, tha is the user remove it from the finished tab, through a button in the action bar
+
         }
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {

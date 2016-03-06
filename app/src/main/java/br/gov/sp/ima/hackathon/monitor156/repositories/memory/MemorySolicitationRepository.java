@@ -18,7 +18,7 @@ public class MemorySolicitationRepository implements SolicitationRepository {
     public void fetchSolicitationByProtocolNumber(String requestYear, int type, long number, SolicitationListener listener) {
         for (Solicitation solicitation : FIXED_SOLICITATIONS_LIST) {
             if (solicitation.getRequestYear().equals(requestYear) && solicitation.getType() == type && solicitation.getNumber() == number) {
-                listener.onFetchSolicitationSuccess(solicitationPayload.get(0));
+                listener.onFetchSolicitationSuccess(null);
             }
         }
     }

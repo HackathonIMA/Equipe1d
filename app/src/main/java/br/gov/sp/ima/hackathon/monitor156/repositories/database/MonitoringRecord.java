@@ -8,18 +8,27 @@ import br.gov.sp.ima.hackathon.monitor156.values.Monitoring;
 @DatabaseTable(tableName = "monitoring")
 public class MonitoringRecord {
 
-    @DatabaseField(id = true) private String monitoringId;
-    @DatabaseField private String content;
+    @DatabaseField(id = true) private int id;
+    @DatabaseField private String requestYear;
+    @DatabaseField private int type;
+    @DatabaseField long number;
+    @DatabaseField String description;
+    @DatabaseField int status;
+    @DatabaseField String statusDescription;
 
     /* for framework */
     MonitoringRecord() { }
 
-    public MonitoringRecord(String monitoringId, String content) {
-        this.monitoringId = monitoringId;
-        this.content = content;
+    public MonitoringRecord(String requestYear, int type, long number, String description, int status, String statusDescription) {
+        this.requestYear = requestYear;
+        this.type = type;
+        this.number = number;
+        this.description = description;
+        this.status = status;
+        this.statusDescription = statusDescription;
     }
 
     public Monitoring toMonitoring() {
-        return new Monitoring(monitoringId, content);
+        return new Monitoring(description, status, statusDescription);
     }
 }
