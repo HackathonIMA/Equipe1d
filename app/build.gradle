@@ -11,6 +11,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "BASE_URL", "\"http://api.ima.sp.gov.br\""
+        buildConfigField "String", "APPLICATION_JSON", "\"application/json\""
+        buildConfigField "String", "CLIENT_ID", "\"hyNmwq0iIfr9\""
         buildConfigField "boolean", "PRODUCTION", "false"
     }
     buildTypes {

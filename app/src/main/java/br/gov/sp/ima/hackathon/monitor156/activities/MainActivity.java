@@ -12,17 +12,20 @@ import android.view.View;
 
 import br.gov.sp.ima.hackathon.monitor156.R;
 import br.gov.sp.ima.hackathon.monitor156.adapters.TabsAdapter;
+import br.gov.sp.ima.hackathon.monitor156.api.SolicitationPayload;
 import br.gov.sp.ima.hackathon.monitor156.fragments.ArchivedMonitoringFragment;
 import br.gov.sp.ima.hackathon.monitor156.fragments.FinishedMonitoringFragment;
 import br.gov.sp.ima.hackathon.monitor156.fragments.InProgressMonitoringFragment;
 import br.gov.sp.ima.hackathon.monitor156.fragments.RegisterMonitoringDialogFragment;
+import br.gov.sp.ima.hackathon.monitor156.repositories.Repositories;
+import br.gov.sp.ima.hackathon.monitor156.repositories.SolicitationRepository;
 import br.gov.sp.ima.hackathon.monitor156.values.Monitoring;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements InProgressMonitoringFragment.OnInProgressInteractionListener,
         FinishedMonitoringFragment.OnFinishedInteractionListener, ArchivedMonitoringFragment.OnArchivedInteractionListener,
-        RegisterMonitoringDialogFragment.OnRegisterMonitoringListener {
+        RegisterMonitoringDialogFragment.OnRegisterMonitoringListener, SolicitationRepository.SolicitationListener {
 
     @Bind(android.R.id.content) View rootView;
     @Bind(R.id.toolbar) Toolbar toolbar;
@@ -88,8 +91,24 @@ public class MainActivity extends AppCompatActivity implements InProgressMonitor
     }
 
     @Override
+    public void onConfirmRegisterDialog(String requestYear, int type, long number) {
+        Repositories.repository().forSolicitation().fetchSolicitationByProtocolNumber(requestYear, type, number, this);
+    }
+
+    @Override
     public void onRegisterMonitoring() {
         Snackbar.make(rootView, "Registered", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    @Override
+    public void onFetchSolicitationSuccess(SolicitationPayload solicitationPayload) {
+
+    }
+
+    @Override
+    public void onFetchSolicitationFail() {
+        Snackbar.make(rootView, "Falha", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 }

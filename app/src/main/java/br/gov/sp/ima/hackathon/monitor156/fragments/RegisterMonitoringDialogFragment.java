@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 import br.gov.sp.ima.hackathon.monitor156.R;
 
@@ -27,15 +29,24 @@ public class RegisterMonitoringDialogFragment extends DialogFragment {
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        dialog.setView(inflater.inflate(R.layout.dialog_fragment_register_monitoring, null))
+        View view = inflater.inflate(R.layout.dialog_fragment_register_monitoring, null);
+
+        final EditText yearField = (EditText) view.findViewById(R.id.year);
+        final EditText typeField = (EditText) view.findViewById(R.id.type);
+        final EditText numberField = (EditText) view.findViewById(R.id.number);
+
+        dialog.setView(view)
                 .setTitle(R.string.new_monitoring)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listener.onRegisterMonitoring();
+                        listener.onConfirmRegisterDialog(
+                                yearField.getText().toString().trim(),
+                                Integer.parseInt(typeField.getText().toString().trim()),
+                                Long.valueOf(numberField.getText().toString().trim()));
                     }
                 });
         return dialog.create();
@@ -69,6 +80,7 @@ public class RegisterMonitoringDialogFragment extends DialogFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnRegisterMonitoringListener {
+        void onConfirmRegisterDialog(String requestYear, int type, long number);
         void onRegisterMonitoring();
     }
 }
